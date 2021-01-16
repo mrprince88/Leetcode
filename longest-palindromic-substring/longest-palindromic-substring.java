@@ -1,29 +1,38 @@
 class Solution {
+    
     public String longestPalindrome(String str) {
-        int[] current={0,1};
-        for(int i=1;i<str.length();i++) {
-            int []odd=solve(str,i-1,i+1);
-            int []even=solve(str,i-1,i);
+        
+        if (str == null || str.length() < 1)
+            return "";
+        
+        int start=0,end=0;
+        
+        for(int i=0;i<str.length();i++) {
             
-            int oddIndex=odd[1]-odd[0],evenIndex=even[1]-even[0],
-            currentIndex=current[1]-current[0];
+            int oddLen=solve(str,i,i);
+            int evenLen=solve(str,i,i+1);
             
-            if(currentIndex<Math.max(oddIndex,evenIndex)) {
-                if(oddIndex>currentIndex)
-                    current=odd;
-                else
-                    current=even;
+            int len = Math.max(oddLen, evenLen);
+            
+            if (len > end - start) {
+                start = i - (len - 1) / 2;
+                end = i + len / 2;
             }
+            
         }
-        return str.substring(current[0],current[1]);
+        
+        return str.substring(start,end+1);
     }
     
-    int[] solve(String str,int pos1,int pos2) {
+    int solve(String str,int pos1,int pos2) {
+        
         while(pos1>=0 && pos2<str.length()) {
+            
             if(str.charAt(pos1)!=str.charAt(pos2))
                 break;
+            
             pos1--; pos2++;
         }
-        return new int [] {pos1+1,pos2};
+        return pos2-pos1-1;
     }
 }
