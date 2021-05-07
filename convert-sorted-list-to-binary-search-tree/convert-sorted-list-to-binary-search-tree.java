@@ -23,24 +23,26 @@
  *     }
  * }
  */
-public class Solution {
-public TreeNode sortedListToBST(ListNode head) {
-    if(head==null) return null;
-    return toBST(head,null);
-}
-public TreeNode toBST(ListNode head, ListNode tail){
-    ListNode slow = head;
-    ListNode fast = head;
-    if(head==tail) return null;
-    
-    while(fast!=tail&&fast.next!=tail){
-        fast = fast.next.next;
-        slow = slow.next;
+class Solution {
+    public TreeNode sortedListToBST(ListNode head) {
+        if(head==null) return null;
+        return toBST(head,null);
     }
-    TreeNode tempHead = new TreeNode(slow.val);
-    tempHead.left = toBST(head,slow);
-    tempHead.right = toBST(slow.next,tail);
-    return tempHead;
+    
+    private TreeNode toBST(ListNode head,ListNode tail) {
+        ListNode fast=head,slow=head;
+        
+        if(head==tail)
+            return null;
+        
+        while(fast!=tail && fast.next!=tail) {
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        
+        TreeNode temp=new TreeNode(slow.val);
+        temp.left=toBST(head,slow);
+        temp.right=toBST(slow.next,tail);
+        return temp;
+    }
 }
-}
-
