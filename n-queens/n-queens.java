@@ -25,11 +25,8 @@ class Solution {
     
     List<String> getString(char [][]a,int n) {
         List<String> sol=new ArrayList<>();
-        for(int i=0;i<n;i++) {
-            StringBuffer sb=new StringBuffer();
-            sb.append(a[i]);
-            sol.add(sb.toString());
-        }
+        for(int i=0;i<n;i++)
+            sol.add(String.valueOf(a[i]));
         return sol;
     }
     
