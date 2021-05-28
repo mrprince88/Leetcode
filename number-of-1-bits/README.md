@@ -1,13 +1,11 @@
-<h2>191. Number of 1 Bits</h2><h3>Easy</h3><hr><div><p>Write a function that takes an unsigned integer and returns&nbsp;the number of '1'&nbsp;bits it has (also known as the <a href="http://en.wikipedia.org/wiki/Hamming_weight" target="_blank">Hamming weight</a>).</p>
+<h2>191. Number of 1 Bits</h2><h3>Easy</h3><hr><div><p>Write a function that takes an unsigned integer and returns the number of '1' bits it has (also known as the <a href="http://en.wikipedia.org/wiki/Hamming_weight" target="_blank">Hamming weight</a>).</p>
 
 <p><strong>Note:</strong></p>
 
 <ul>
-	<li>Note that in some languages such as Java, there is no unsigned integer type. In this case, the input will be given as a signed integer type. It should not affect your implementation, as the integer's internal binary representation is the same, whether it is signed or unsigned.</li>
-	<li>In Java,&nbsp;the compiler represents the signed integers using <a href="https://en.wikipedia.org/wiki/Two%27s_complement" target="_blank">2's complement notation</a>. Therefore, in <strong>Example 3</strong>&nbsp;above, the input represents the signed integer.&nbsp;<code>-3</code>.</li>
+	<li>Note that in some languages, such as Java, there is no unsigned integer type. In this case, the input will be given as a signed integer type. It should not affect your implementation, as the integer's internal binary representation is the same, whether it is signed or unsigned.</li>
+	<li>In Java, the compiler represents the signed integers using <a href="https://en.wikipedia.org/wiki/Two%27s_complement" target="_blank">2's complement notation</a>. Therefore, in <strong>Example 3</strong>, the input represents the signed integer. <code>-3</code>.</li>
 </ul>
-
-<p><b>Follow up</b>: If this function is called many times, how would you optimize it?</p>
 
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
@@ -35,6 +33,8 @@
 <p><strong>Constraints:</strong></p>
 
 <ul>
-	<li>The input must be a <strong>binary string</strong> of length <code>32</code></li>
+	<li>The input must be a <strong>binary string</strong> of length <code>32</code>.</li>
 </ul>
-</div>
+
+<p>&nbsp;</p>
+<strong>Follow up:</strong> If this function is called many times, how would you optimize it?</div>
