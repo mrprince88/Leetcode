@@ -35,6 +35,9 @@ Column 2: Only node 7 is in this column.
 <img alt="" src="https://assets.leetcode.com/uploads/2021/01/29/vtree3.jpg" style="width: 512px; height: 304px;">
 <pre><strong>Input:</strong> root = [1,2,3,4,6,5,7]
 <strong>Output:</strong> [[4],[2],[1,5,6],[3],[7]]
+<strong>Explanation:</strong>
+This case is the exact same as example 2, but with nodes 5 and 6 swapped.
+Note that the solution remains the same since 5 and 6 are in the same location and should be ordered by their values.
 </pre>
 
 <p>&nbsp;</p>
