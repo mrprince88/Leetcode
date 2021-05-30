@@ -22,11 +22,12 @@ class Solution {
     
     
     boolean equals(TreeNode n,TreeNode m) {
-        if(n==null && m==null)
-            return true;
+        if(n==null || m==null)
+            return n==m;
         
-        if((n==null && m!=null) || (n!=null && m==null) || n.val!=m.val)
+        if(n.val!=m.val)
             return false;
+        
         return equals(n.left,m.right) && equals(n.right,m.left);
     }
 }
