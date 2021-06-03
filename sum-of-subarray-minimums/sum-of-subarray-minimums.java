@@ -2,6 +2,7 @@ class Solution {
     public int sumSubarrayMins(int[] arr) {
         
         int n=arr.length;
+        
         Stack<Integer> stack=new Stack<>();
         int []prev=new int[n],next=new int[n];
         
