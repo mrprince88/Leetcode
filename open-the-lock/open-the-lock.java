@@ -1,42 +1,41 @@
 class Solution {
-    
-    private static final String START = "0000";
-    
     public int openLock(String[] deadends, String target) {
-        if (target == null || target.length() == 0) return -1;
-        Set<String> visited = new HashSet<>(Arrays.asList(deadends));
-        Queue<String> queue = new LinkedList<>();
-        int level = 0;
-        queue.offer(START);
+        Set<String> set=new HashSet<>(Arrays.asList(deadends));
         
-        while (!queue.isEmpty()) {
-            int size = queue.size();
-            for (int i = 0; i < size; i++) {
-                String currentLock = queue.poll();
-                if (!visited.add(currentLock)) continue;
+        Queue<String> q=new LinkedList<>();
+        q.add("0000");
+        int level=0;
+        
+        while(!q.isEmpty()) {
+            int n=q.size();
+            
+            for(int i=0;i<n;i++) {
+                String currentLock = q.poll();
+                if (!set.add(currentLock)) continue;
                 if (currentLock.equals(target)) return level;
                 
-                for (String nextLock : getNextStates(currentLock)) {
-                    if (!visited.contains(nextLock)) queue.offer(nextLock);
-                }
+                for (String nextLock : getNext(currentLock))
+                    if(!set.contains(nextLock)) q.add(nextLock);
             }
             level++;
         }
-        
         return -1;
     }
     
-    private List<String> getNextStates(String lock) {
-        List<String> locks = new LinkedList<>();
-        char[] arr = lock.toCharArray();
-        for (int i = 0; i < arr.length; i++) {
-            char c = arr[i];
-            arr[i] = c == '9' ? '0' : (char) (c + ((char) 1));
-            locks.add(String.valueOf(arr));
-            arr[i] = c == '0' ? '9' : (char) (c - ((char) 1));
-            locks.add(String.valueOf(arr));
-            arr[i] = c;
+    public List<String> getNext(String s) {
+        
+        List<String> list=new ArrayList<>();
+        char []str=s.toCharArray();
+        
+        for(int i=0;i<str.length;i++) {
+            char c=str[i];
+            str[i]=(c=='9') ? '0': (char)(c+1);
+            list.add(String.valueOf(str));
+            
+            str[i]=(c=='0') ? '9': (char)(c-1);
+            list.add(String.valueOf(str));
+            str[i]=c;
         }
-        return locks;
+        return list;
     }
 }
