@@ -4,11 +4,11 @@ class Solution {
         q.add(0);
         int n=nums.length;
         for(int i=1;i<n;i++) {
-            if(q.getFirst()+k<i)
-                q.removeFirst();
-            nums[i]+=nums[q.getFirst()];
-            while(!q.isEmpty() && nums[q.getLast()]<=nums[i])
-                q.removeLast();
+            if(q.peek()+k<i)
+                q.poll();
+            nums[i]+=nums[q.peek()];
+            while(!q.isEmpty() && nums[q.peekLast()]<=nums[i])
+                q.pollLast();
             q.add(i);
         }
         return nums[n-1];
