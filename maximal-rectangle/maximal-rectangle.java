@@ -23,9 +23,9 @@ class Solution {
         
         int i=0,n=heights.length;
         
-        while(i<n) {
-            
-            if(stack.isEmpty() || heights[stack.peek()]<=heights[i])
+        while(i<=n) {
+            int h= i==n ? 0: heights[i];
+            if(stack.isEmpty() || heights[stack.peek()]<=h)
                 stack.push(i++);
             
             else {
@@ -34,12 +34,6 @@ class Solution {
                 currArea=heights[tp]*(stack.isEmpty()? i: i-stack.peek()-1);
                 maxArea=Math.max(maxArea,currArea);
             }
-        }
-        while(!stack.isEmpty()) {
-            tp=stack.peek();
-            stack.pop();
-            currArea=heights[tp]*(stack.isEmpty()?i: i-stack.peek()-1);
-            maxArea=Math.max(maxArea,currArea);
         }
         return maxArea;
     }
