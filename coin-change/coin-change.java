@@ -1,22 +1,24 @@
 class Solution {
-    public int coinChange(int[] coins, int amount) {
-        int n=coins.length,m=amount;
-        int [][]dp=new int[n][m+1];
+    int max;
+    public int coinChange(int[] coins, int amt) {
+        max=amt+1;
+        int res = solver(coins,amt,0,new int[coins.length][amt+1]);
+        return res==max ? -1: res;
+    }
+    
+    int solver(int []coins,int amt,int idx,int [][]dp) {
+        if(idx==coins.length || amt<0)
+            return max;
         
-        for(int i=0;i<n;i++)
-            for(int j=1;j<=m;j++)
-                dp[i][j]=Integer.MAX_VALUE;
+        if(dp[idx][amt]>0)
+            return dp[idx][amt];
         
-        for(int i=0;i<n;i++) {
-            for(int j=0;j<=m;j++) {
-                if(i>0)
-                dp[i][j]=dp[i-1][j];
-                
-                if(coins[i]<=j && dp[i][j-coins[i]]!=Integer.MAX_VALUE)
-                    dp[i][j]=Math.min(dp[i][j],1+dp[i][j-coins[i]]);
-            }
-        }
+        if(amt==0)
+            return 0;
         
-        return dp[n-1][m]!=Integer.MAX_VALUE ? dp[n-1][m]:-1;
+        int option1=1+solver(coins,amt-coins[idx],idx,dp);
+        int option2=solver(coins,amt,idx+1,dp);
+        dp[idx][amt]=Math.min(option1,option2);
+        return dp[idx][amt];
     }
 }
