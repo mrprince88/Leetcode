@@ -2,23 +2,17 @@ class Solution {
     int max;
     public int coinChange(int[] coins, int amt) {
         max=amt+1;
-        int res = solver(coins,amt,0,new int[coins.length][amt+1]);
-        return res==max ? -1: res;
-    }
-    
-    int solver(int []coins,int amt,int idx,int [][]dp) {
-        if(idx==coins.length || amt<0)
-            return max;
         
-        if(dp[idx][amt]>0)
-            return dp[idx][amt];
+        int []dp=new int[amt+1];
+        Arrays.fill(dp,max);
+        dp[0]=0;
         
-        if(amt==0)
-            return 0;
-        
-        int option1=1+solver(coins,amt-coins[idx],idx,dp);
-        int option2=solver(coins,amt,idx+1,dp);
-        dp[idx][amt]=Math.min(option1,option2);
-        return dp[idx][amt];
+        for(int i=0;i<coins.length;i++) {
+            for(int j=0;j<=amt;j++) {
+                if(j>=coins[i])
+                    dp[j]=Math.min(dp[j],1+dp[j-coins[i]]);
+            }
+        }
+        return dp[amt]==max ?-1: dp[amt];
     }
 }
