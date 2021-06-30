@@ -3,6 +3,23 @@ class Solution {
     public boolean circularArrayLoop(int[] nums) {
         n=nums.length;
         
+        // for(int i=0;i<n;i++) {
+        //     if(nums[i]==0) continue;
+        //     int j=i,len=0;
+        //     while(nums[i]*nums[j] > 0) {
+        //         int next=getNext(j,nums);
+        //         if(next==j) break;
+        //         j=next;
+        //         len++;
+        //         if(len>n) return true;
+        //     }
+        //     j=i;
+        //     while(len-->0) {
+        //         nums[j]=0; j=getNext(j,nums);
+        //     }
+        // }
+        // return false;
+        
         for(int i=0;i<n;i++) {
             
             if(nums[i]==0) continue;
@@ -31,8 +48,6 @@ class Solution {
         return next<0 ? next+n : next;
     }
 }
-
-
 
 
 // class Solution {
