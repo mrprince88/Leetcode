@@ -1,15 +1,18 @@
 class Solution {
-    public List<Integer> findClosestElements(int[] arr, int k, int x) {
+    public List<Integer> findClosestElements(int[] nums, int k, int x) {
+        int low=0,high=nums.length-1;
         
-        List<Integer> list=new ArrayList<>();
+        while((high-low)>=k) {
+            if(Math.abs(nums[high]-x)>=Math.abs(nums[low]-x))
+                high--;
+            else
+                low++;
+        }
         
-        for(int i:arr)
-            list.add(i);
+        ArrayList<Integer> ans=new ArrayList<>();
+        for(int i=low;i<=high;i++)
+            ans.add(nums[i]);
         
-        Collections.sort(list,(a,b)->a==b ? a-b:Math.abs(a-x)-Math.abs(b-x));
-        list=list.subList(0,k);
-        Collections.sort(list);
-        
-        return list;
+        return ans;
     }
 }
