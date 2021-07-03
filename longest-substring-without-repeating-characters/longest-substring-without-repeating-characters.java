@@ -3,22 +3,20 @@ class Solution {
         
         int i=0,j=0,max=0,len=s.length();
         
-        HashSet<Character> h=new HashSet<>();
+        Map<Character,Integer> map=new HashMap<>();
         
         while(j<len) {
-            
-            if(h.contains(s.charAt(j))) {
-                h.remove(s.charAt(i));
-                i++;
-            }
-            
+            char curr=s.charAt(j);
+            if(!map.containsKey(curr))
+                max=Math.max(max,j-i+1);
             else {
-                h.add(s.charAt(j));
-                j++;
-                if(h.size()>max)
-                    max++;
-                
+                int last=map.get(curr);
+                if(last<i)
+                    max=Math.max(max,j-i+1);
+                else
+                    i=last+1;
             }
+            map.put(curr,j++);
         }
         return max;
     }
